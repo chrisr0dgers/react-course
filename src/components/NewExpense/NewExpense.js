@@ -20,17 +20,15 @@ const NewExpense = (props) => {
     setShowForm((prevShowForm) => !prevShowForm);
   }
 
-  if (showForm) {
-    return (
-      <div className="new-expense">
-        <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
-      </div>
-    );
-  }
-
   return (
     <div className="new-expense">
-      <button onClick={toggleForm}>Add new expense</button>
+      {!showForm && <button onClick={toggleForm}>Add new expense</button>}
+      {showForm && (
+        <ExpenseForm
+          onCancel={toggleForm}
+          onSaveExpenseData={saveExpenseDataHandler}
+        />
+      )}
     </div>
   );
 };
